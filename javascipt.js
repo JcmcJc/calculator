@@ -69,7 +69,7 @@ let equal = document.querySelector("#equal");
 let whichDigit = "left"; //Default left
 
 function equation() {
-  //Numbers
+  //Number event listeners
   one.addEventListener("click", () => {
     if (whichDigit == "left") {
       digitLeft.push(1);
@@ -78,6 +78,116 @@ function equation() {
     } else {
       //Switches to the right number in the equation
       digitRight.push(1);
+      console.log(digitRight);
+      display.textContent = `${digitLeft.join("")} ${operator} ${digitRight.join("")}`;
+    }
+  });
+  two.addEventListener("click", () => {
+    if (whichDigit == "left") {
+      digitLeft.push(2);
+      console.log(digitLeft);
+      display.textContent = `${digitLeft.join("")}`;
+    } else {
+      //Switches to the right number in the equation
+      digitRight.push(2);
+      console.log(digitRight);
+      display.textContent = `${digitLeft.join("")} ${operator} ${digitRight.join("")}`;
+    }
+  });
+  three.addEventListener("click", () => {
+    if (whichDigit == "left") {
+      digitLeft.push(3);
+      console.log(digitLeft);
+      display.textContent = `${digitLeft.join("")}`;
+    } else {
+      //Switches to the right number in the equation
+      digitRight.push(3);
+      console.log(digitRight);
+      display.textContent = `${digitLeft.join("")} ${operator} ${digitRight.join("")}`;
+    }
+  });
+  four.addEventListener("click", () => {
+    if (whichDigit == "left") {
+      digitLeft.push(4);
+      console.log(digitLeft);
+      display.textContent = `${digitLeft.join("")}`;
+    } else {
+      //Switches to the right number in the equation
+      digitRight.push(4);
+      console.log(digitRight);
+      display.textContent = `${digitLeft.join("")} ${operator} ${digitRight.join("")}`;
+    }
+  });
+  five.addEventListener("click", () => {
+    if (whichDigit == "left") {
+      digitLeft.push(5);
+      console.log(digitLeft);
+      display.textContent = `${digitLeft.join("")}`;
+    } else {
+      //Switches to the right number in the equation
+      digitRight.push(5);
+      console.log(digitRight);
+      display.textContent = `${digitLeft.join("")} ${operator} ${digitRight.join("")}`;
+    }
+  });
+
+  six.addEventListener("click", () => {
+    if (whichDigit == "left") {
+      digitLeft.push(6);
+      console.log(digitLeft);
+      display.textContent = `${digitLeft.join("")}`;
+    } else {
+      //Switches to the right number in the equation
+      digitRight.push(6);
+      console.log(digitRight);
+      display.textContent = `${digitLeft.join("")} ${operator} ${digitRight.join("")}`;
+    }
+  });
+
+  seven.addEventListener("click", () => {
+    if (whichDigit == "left") {
+      digitLeft.push(7);
+      console.log(digitLeft);
+      display.textContent = `${digitLeft.join("")}`;
+    } else {
+      //Switches to the right number in the equation
+      digitRight.push(7);
+      console.log(digitRight);
+      display.textContent = `${digitLeft.join("")} ${operator} ${digitRight.join("")}`;
+    }
+  });
+  eight.addEventListener("click", () => {
+    if (whichDigit == "left") {
+      digitLeft.push(8);
+      console.log(digitLeft);
+      display.textContent = `${digitLeft.join("")}`;
+    } else {
+      //Switches to the right number in the equation
+      digitRight.push(8);
+      console.log(digitRight);
+      display.textContent = `${digitLeft.join("")} ${operator} ${digitRight.join("")}`;
+    }
+  });
+  nine.addEventListener("click", () => {
+    if (whichDigit == "left") {
+      digitLeft.push(9);
+      console.log(digitLeft);
+      display.textContent = `${digitLeft.join("")}`;
+    } else {
+      //Switches to the right number in the equation
+      digitRight.push(9);
+      console.log(digitRight);
+      display.textContent = `${digitLeft.join("")} ${operator} ${digitRight.join("")}`;
+    }
+  });
+  zero.addEventListener("click", () => {
+    if (whichDigit == "left") {
+      digitLeft.push(0);
+      console.log(digitLeft);
+      display.textContent = `${digitLeft.join("")}`;
+    } else {
+      //Switches to the right number in the equation
+      digitRight.push(0);
       console.log(digitRight);
       display.textContent = `${digitLeft.join("")} ${operator} ${digitRight.join("")}`;
     }

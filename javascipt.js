@@ -29,7 +29,7 @@ let operate = function (num1, operator, num2) {
     case "/":
       return divide(num1, num2);
       break;
-    case "*":
+    case "×":
       return multiply(num1, num2);
       break;
     case "^":
@@ -354,17 +354,17 @@ function equation() {
     decimalPresent = false;
   });
   multi.addEventListener("click", () => {
-    display.textContent = `${digitLeft.join("")} * `;
+    display.textContent = `${digitLeft.join("")} × `;
     //If the user presses another operand before equals: evaluate the previous two numbers then add the next operand.
     if (digitRight.length > 0) {
       digitLeft = [
         operate(+digitLeft.join(""), operator, +digitRight.join("")),
       ];
       digitRight = [];
-      display.textContent = `${digitLeft.join("")} * `;
+      display.textContent = `${digitLeft.join("")} × `;
     }
-    operator = "*";
-    console.log("*");
+    operator = "×";
+    console.log("×");
     whichDigit = "right";
     decimalPresent = false;
   });

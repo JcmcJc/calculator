@@ -22,7 +22,7 @@ const factorial = (number) => {
   return total;
 };
 
-let operate = function (num1, num2, operator) {
+let operate = function (num1, operator, num2) {
   switch (operator) {
     case "+":
       return add(num1, num2);
@@ -42,7 +42,7 @@ let operate = function (num1, num2, operator) {
   }
 };
 
-console.log(`Operate ${operate(6, 1, "^")}`);
+console.log(`Operate ${operate(6, "^", 2)}`);
 
 console.log(`Add ${add(3, 3.7)} `);
 console.log(`Subtract ${subtract(3, 3.7)} `);

@@ -42,10 +42,13 @@ let operate = function (num1, operator, num2) {
   }
 };
 
+//Logic
 let digitLeft = [];
 let digitRight = [];
 let operator = "";
 let equalPress = false;
+let decimalPresent = false;
+let whichDigit = "left"; //Default left
 
 // Button declarations
 //Numbers
@@ -61,19 +64,17 @@ let seven = document.querySelector("#seven");
 let eight = document.querySelector("#eight");
 let nine = document.querySelector("#nine");
 let zero = document.querySelector("#zero");
-//Operands
 
+//Operands
 let plus = document.querySelector("#plus");
 let minus = document.querySelector("#minus");
 let multi = document.querySelector("#multiply");
 let div = document.querySelector("#divide");
 let equal = document.querySelector("#equal");
-
+let decimal = document.querySelector("#decimal");
 let clear = document.querySelector("#clear");
 
 //Event listeners for buttons
-
-let whichDigit = "left"; //Default left
 
 function equation() {
   //Number event listeners
@@ -259,8 +260,7 @@ function equation() {
       equalPress = false;
     }
   });
-  //Clear
-
+  //Reset everything to default when clear button is pressed
   clear.addEventListener("click", () => {
     digitLeft = [];
     digitRight = [];
@@ -268,6 +268,41 @@ function equation() {
     operator = "";
     equalPress = false;
     whichDigit = "left";
+    decimalPresent = false;
+  });
+  decimal.addEventListener("click", () => {
+    if (
+      whichDigit == "left" &&
+      decimalPresent == false &&
+      equalPress == false &&
+      digitLeft.length == 0
+    ) {
+      digitLeft.push("0.");
+      display.textContent = `${digitLeft.join("")}`;
+      decimalPresent = true;
+    } else if (whichDigit == "right" && decimalPresent == false) {
+      digitRight.push(".");
+      //display.textContent = `${digitRight.join("")}`;
+      display.textContent = `${digitLeft.join("")} ${operator} ${digitRight.join("")}`;
+
+      decimalPresent = true;
+    } else if (whichDigit == "left" && equalPress == true) {
+      digitLeft = [];
+      digitLeft.push(".");
+      console.log(digitLeft);
+      display.textContent = `${digitLeft.join("")}`;
+      decimalPresent = true;
+
+      equalPress = false;
+    } else if (
+      whichDigit == "left" &&
+      decimalPresent == false &&
+      equalPress == false
+    ) {
+      digitLeft.push(".");
+      display.textContent = `${digitLeft.join("")}`;
+      decimalPresent = true;
+    }
   });
   //Operands always switch to the next number of the equation.
   plus.addEventListener("click", () => {
@@ -284,6 +319,7 @@ function equation() {
     console.log("+");
 
     whichDigit = "right";
+    decimalPresent = false;
   });
   minus.addEventListener("click", () => {
     display.textContent = `${digitLeft.join("")} - `;
@@ -298,6 +334,7 @@ function equation() {
     operator = "-";
     console.log("-");
     whichDigit = "right";
+    decimalPresent = false;
   });
   multi.addEventListener("click", () => {
     display.textContent = `${digitLeft.join("")} * `;
@@ -312,6 +349,7 @@ function equation() {
     operator = "*";
     console.log("*");
     whichDigit = "right";
+    decimalPresent = false;
   });
 
   div.addEventListener("click", () => {
@@ -327,16 +365,18 @@ function equation() {
     operator = "/";
     console.log("/");
     whichDigit = "right";
+    decimalPresent = false;
   });
 
   //Equal operand finishes the equation
   equal.addEventListener("click", () => {
-    display.textContent = `${operate(+digitLeft.join(""), operator, +digitRight.join(""))}`;
+    display.textContent = `${operate(+digitLeft.join(""), operator, +digitRight.join("")).toFixed(10)}`;
     digitLeft = [operate(+digitLeft.join(""), operator, +digitRight.join(""))];
     digitRight = [];
     console.log("equals");
     whichDigit = "left";
     equalPress = true;
+    decimalPresent = false;
   });
 }
 

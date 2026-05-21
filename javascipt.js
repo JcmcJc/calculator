@@ -71,6 +71,8 @@ let decimal = document.querySelector("#decimal");
 let backspace = document.querySelector("#backspace");
 let clear = document.querySelector("#clear");
 
+let result = document.createElement("div");
+result.classList.add("result");
 //Event listeners for buttons
 
 function equation() {
@@ -385,20 +387,21 @@ function equation() {
 
   //Equal operand finishes the equation
   equal.addEventListener("click", () => {
-    display.textContent = `${operate(+digitLeft.join(""), operator, +digitRight.join(""))}`;
+    let previous = document.createElement("div");
+    previous.textContent = `${digitLeft.join("")} ${operator} ${digitRight.join("")}`;
+    result.textContent = `${operate(+digitLeft.join(""), operator, +digitRight.join(""))}`;
     digitLeft = [operate(+digitLeft.join(""), operator, +digitRight.join(""))];
     digitRight = [];
     console.log("equals");
     whichDigit = "left";
     equalPress = true;
     decimalPresent = false;
+    display.textContent = "";
+    previous.style.fontSize = "12px";
+    previous.style.color = "grey";
+    display.appendChild(previous);
+    display.appendChild(result);
   });
 }
 
 equation();
-console.log(`Operate ${operate(6, "^", 2)}`);
-
-console.log(`Add ${add(3, 3.7)} `);
-console.log(`Subtract ${subtract(3, 3.7)} `);
-console.log(`Multiply ${multiply(3, 3.7)} `);
-console.log(`Divide ${divide(3, 3.7)} `);

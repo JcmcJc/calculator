@@ -44,7 +44,7 @@ let operate = function (num1, operator, num2) {
 
 let digitLeft = [];
 let digitRight = [];
-let operator = "+";
+let operator = "";
 let equalPress = false;
 
 // Button declarations
@@ -62,8 +62,14 @@ let eight = document.querySelector("#eight");
 let nine = document.querySelector("#nine");
 let zero = document.querySelector("#zero");
 //Operands
+
 let plus = document.querySelector("#plus");
+let minus = document.querySelector("#minus");
+let multi = document.querySelector("#multiply");
+let div = document.querySelector("#divide");
 let equal = document.querySelector("#equal");
+
+let clear = document.querySelector("#clear");
 
 //Event listeners for buttons
 
@@ -253,13 +259,76 @@ function equation() {
       equalPress = false;
     }
   });
+  //Clear
 
+  clear.addEventListener("click", () => {
+    digitLeft = [];
+    digitRight = [];
+    display.textContent = "";
+    operator = "";
+    equalPress = false;
+    whichDigit = "left";
+  });
   //Operands always switch to the next number of the equation.
   plus.addEventListener("click", () => {
     display.textContent = `${digitLeft.join("")} + `;
+    //If the user presses another operand before equals: evaluate the previous two numbers then add the next operand.
+    if (digitRight.length > 0) {
+      digitLeft = [
+        operate(+digitLeft.join(""), operator, +digitRight.join("")),
+      ];
+      digitRight = [];
+      display.textContent = `${digitLeft.join("")} + `;
+    }
+    operator = "+";
     console.log("+");
+
     whichDigit = "right";
   });
+  minus.addEventListener("click", () => {
+    display.textContent = `${digitLeft.join("")} - `;
+    //If the user presses another operand before equals: evaluate the previous two numbers then add the next operand.
+    if (digitRight.length > 0) {
+      digitLeft = [
+        operate(+digitLeft.join(""), operator, +digitRight.join("")),
+      ];
+      digitRight = [];
+      display.textContent = `${digitLeft.join("")} - `;
+    }
+    operator = "-";
+    console.log("-");
+    whichDigit = "right";
+  });
+  multi.addEventListener("click", () => {
+    display.textContent = `${digitLeft.join("")} * `;
+    //If the user presses another operand before equals: evaluate the previous two numbers then add the next operand.
+    if (digitRight.length > 0) {
+      digitLeft = [
+        operate(+digitLeft.join(""), operator, +digitRight.join("")),
+      ];
+      digitRight = [];
+      display.textContent = `${digitLeft.join("")} * `;
+    }
+    operator = "*";
+    console.log("*");
+    whichDigit = "right";
+  });
+
+  div.addEventListener("click", () => {
+    display.textContent = `${digitLeft.join("")} / `;
+    //If the user presses another operand before equals: evaluate the previous two numbers then add the next operand.
+    if (digitRight.length > 0) {
+      digitLeft = [
+        operate(+digitLeft.join(""), operator, +digitRight.join("")),
+      ];
+      digitRight = [];
+      display.textContent = `${digitLeft.join("")} / `;
+    }
+    operator = "/";
+    console.log("/");
+    whichDigit = "right";
+  });
+
   //Equal operand finishes the equation
   equal.addEventListener("click", () => {
     display.textContent = `${operate(+digitLeft.join(""), operator, +digitRight.join(""))}`;

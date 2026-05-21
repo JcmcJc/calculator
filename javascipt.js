@@ -8,10 +8,6 @@ const divide = (a, b) => a / b;
 
 const power = (a, b) => a ** b;
 
-const sum = (array) => {
-  return array.reduce((total, current) => total + current, 0);
-};
-
 const factorial = (number) => {
   let total = 1;
   while (number > 0) {
@@ -72,6 +68,7 @@ let multi = document.querySelector("#multiply");
 let div = document.querySelector("#divide");
 let equal = document.querySelector("#equal");
 let decimal = document.querySelector("#decimal");
+let backspace = document.querySelector("#backspace");
 let clear = document.querySelector("#clear");
 
 //Event listeners for buttons
@@ -260,6 +257,24 @@ function equation() {
       equalPress = false;
     }
   });
+
+  backspace.addEventListener("click", () => {
+    let popped = "";
+    if (whichDigit == "left") {
+      popped = digitLeft.pop();
+      display.textContent = `${digitLeft.join("")}`;
+    } else if (whichDigit == "right" && digitRight.length == 0) {
+      display.textContent = `${digitLeft.join("")}`;
+    } else if (whichDigit == "right" && digitRight.length > 0) {
+      popped = digitRight.pop();
+      display.textContent = `${digitLeft.join("")} ${operator} ${digitRight.join("")}`;
+    }
+    if (popped == ".") {
+      decimalPresent = false;
+    }
+
+    console.log("popped " + popped);
+  });
   //Reset everything to default when clear button is pressed
   clear.addEventListener("click", () => {
     digitLeft = [];
@@ -370,7 +385,7 @@ function equation() {
 
   //Equal operand finishes the equation
   equal.addEventListener("click", () => {
-    display.textContent = `${operate(+digitLeft.join(""), operator, +digitRight.join("")).toFixed(10)}`;
+    display.textContent = `${operate(+digitLeft.join(""), operator, +digitRight.join(""))}`;
     digitLeft = [operate(+digitLeft.join(""), operator, +digitRight.join(""))];
     digitRight = [];
     console.log("equals");

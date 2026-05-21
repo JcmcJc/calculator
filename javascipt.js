@@ -42,6 +42,64 @@ let operate = function (num1, operator, num2) {
   }
 };
 
+let digitLeft = [];
+let digitRight = [];
+let operator = "+";
+
+// Button declarations
+//Numbers
+let display = document.querySelector(".display");
+let calculator = document.querySelector(".calculator");
+let one = document.querySelector("#one");
+let two = document.querySelector("#two");
+let three = document.querySelector("#three");
+let four = document.querySelector("#four");
+let five = document.querySelector("#five");
+let six = document.querySelector("#six");
+let seven = document.querySelector("#seven");
+let eight = document.querySelector("#eight");
+let nine = document.querySelector("#nine");
+let zero = document.querySelector("#zero");
+//Operands
+let plus = document.querySelector("#plus");
+let equal = document.querySelector("#equal");
+
+//Event listeners for buttons
+
+let whichDigit = "left"; //Default left
+
+function equation() {
+  //Numbers
+  one.addEventListener("click", () => {
+    if (whichDigit == "left") {
+      digitLeft.push(1);
+      console.log(digitLeft);
+      display.textContent = `${digitLeft.join("")}`;
+    } else {
+      //Switches to the right number in the equation
+      digitRight.push(1);
+      console.log(digitRight);
+      display.textContent = `${digitLeft.join("")} ${operator} ${digitRight.join("")}`;
+    }
+  });
+
+  //Operands always switch to the next number of the equation.
+  plus.addEventListener("click", () => {
+    display.textContent = `${digitLeft.join("")} + `;
+    console.log("+");
+    whichDigit = "right";
+  });
+  //Equal operand finishes the equation
+  equal.addEventListener("click", () => {
+    display.textContent = `${operate(+digitLeft.join(""), operator, +digitRight.join(""))}`;
+    digitLeft = [operate(+digitLeft.join(""), operator, +digitRight.join(""))];
+    digitRight = [];
+    console.log("equals");
+    whichDigit = "left";
+  });
+}
+
+equation();
 console.log(`Operate ${operate(6, "^", 2)}`);
 
 console.log(`Add ${add(3, 3.7)} `);

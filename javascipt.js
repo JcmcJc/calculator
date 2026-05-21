@@ -87,6 +87,7 @@ function equation() {
       digitRight.push(1);
       console.log(digitRight);
       display.textContent = `${digitLeft.join("")} ${operator} ${digitRight.join("")}`;
+      equalPress = false;
     } else {
       digitLeft = [];
       digitLeft.push(1);
@@ -105,6 +106,7 @@ function equation() {
       digitRight.push(2);
       console.log(digitRight);
       display.textContent = `${digitLeft.join("")} ${operator} ${digitRight.join("")}`;
+      equalPress = false;
     } else {
       digitLeft = [];
       digitLeft.push(2);
@@ -123,6 +125,7 @@ function equation() {
       digitRight.push(3);
       console.log(digitRight);
       display.textContent = `${digitLeft.join("")} ${operator} ${digitRight.join("")}`;
+      equalPress = false;
     } else {
       digitLeft = [];
       digitLeft.push(3);
@@ -141,6 +144,7 @@ function equation() {
       digitRight.push(4);
       console.log(digitRight);
       display.textContent = `${digitLeft.join("")} ${operator} ${digitRight.join("")}`;
+      equalPress = false;
     } else {
       digitLeft = [];
       digitLeft.push(4);
@@ -159,6 +163,7 @@ function equation() {
       digitRight.push(5);
       console.log(digitRight);
       display.textContent = `${digitLeft.join("")} ${operator} ${digitRight.join("")}`;
+      equalPress = false;
     } else {
       digitLeft = [];
       digitLeft.push(5);
@@ -178,6 +183,7 @@ function equation() {
       digitRight.push(6);
       console.log(digitRight);
       display.textContent = `${digitLeft.join("")} ${operator} ${digitRight.join("")}`;
+      equalPress = false;
     } else {
       digitLeft = [];
       digitLeft.push(6);
@@ -197,6 +203,7 @@ function equation() {
       digitRight.push(7);
       console.log(digitRight);
       display.textContent = `${digitLeft.join("")} ${operator} ${digitRight.join("")}`;
+      equalPress = false;
     } else {
       digitLeft = [];
       digitLeft.push(7);
@@ -215,6 +222,7 @@ function equation() {
       digitRight.push(8);
       console.log(digitRight);
       display.textContent = `${digitLeft.join("")} ${operator} ${digitRight.join("")}`;
+      equalPress = false;
     } else {
       digitLeft = [];
       digitLeft.push(8);
@@ -233,6 +241,7 @@ function equation() {
       digitRight.push(9);
       console.log(digitRight);
       display.textContent = `${digitLeft.join("")} ${operator} ${digitRight.join("")}`;
+      equalPress = false;
     } else {
       digitLeft = [];
       digitLeft.push(9);
@@ -251,6 +260,7 @@ function equation() {
       digitRight.push(0);
       console.log(digitRight);
       display.textContent = `${digitLeft.join("")} ${operator} ${digitRight.join("")}`;
+      equalPress = false;
     } else {
       digitLeft = [];
       digitLeft.push(0);
@@ -387,20 +397,24 @@ function equation() {
 
   //Equal operand finishes the equation
   equal.addEventListener("click", () => {
-    let previous = document.createElement("div");
-    previous.textContent = `${digitLeft.join("")} ${operator} ${digitRight.join("")}`;
-    result.textContent = `${operate(+digitLeft.join(""), operator, +digitRight.join(""))}`;
-    digitLeft = [operate(+digitLeft.join(""), operator, +digitRight.join(""))];
-    digitRight = [];
-    console.log("equals");
-    whichDigit = "left";
-    equalPress = true;
-    decimalPresent = false;
-    display.textContent = "";
-    previous.style.fontSize = "12px";
-    previous.style.color = "grey";
-    display.appendChild(previous);
-    display.appendChild(result);
+    if (equalPress == false) {
+      let previous = document.createElement("div");
+      previous.textContent = `${digitLeft.join("")} ${operator} ${digitRight.join("")}`;
+      result.textContent = `${operate(+digitLeft.join(""), operator, +digitRight.join(""))}`;
+      digitLeft = [
+        operate(+digitLeft.join(""), operator, +digitRight.join("")),
+      ];
+      digitRight = [];
+      console.log("equals");
+      whichDigit = "left";
+      equalPress = true;
+      decimalPresent = false;
+      display.textContent = "";
+      previous.style.fontSize = "12px";
+      previous.style.color = "grey";
+      display.appendChild(previous);
+      display.appendChild(result);
+    }
   });
 }
 

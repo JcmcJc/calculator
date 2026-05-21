@@ -26,7 +26,7 @@ let operate = function (num1, operator, num2) {
     case "-":
       return subtract(num1, num2);
       break;
-    case "/":
+    case "÷":
       return divide(num1, num2);
       break;
     case "×":
@@ -380,17 +380,16 @@ function equation() {
   });
 
   div.addEventListener("click", () => {
-    display.textContent = `${digitLeft.join("")} / `;
+    display.textContent = `${digitLeft.join("")} ÷ `;
     //If the user presses another operand before equals: evaluate the previous two numbers then add the next operand.
     if (digitRight.length > 0) {
       digitLeft = [
         operate(+digitLeft.join(""), operator, +digitRight.join("")),
       ];
       digitRight = [];
-      display.textContent = `${digitLeft.join("")} / `;
+      display.textContent = `${digitLeft.join("")} ÷ `;
     }
-    operator = "/";
-    console.log("/");
+    operator = "÷";
     whichDigit = "right";
     decimalPresent = false;
   });
